@@ -6,15 +6,11 @@
     "tasks webapp couchdb node.js connect express jquery bootstrap"
   ],
   "maintainers": [
-    {
-      "name": "Scott Sanders",
-      "email": "",
-      "web": "https://github.com/stonecobra"
-    }
+    "Scott Sanders (https://github.com/stonecobra)"
   ],
   "bugs": {
-    "mail": "teamsproutle@gmail.com",
-    "web": "https://github.com/sproutle/donezo/issues"
+    "email": "teamsproutle@gmail.com",
+    "url": "https://github.com/sproutle/donezo/issues"
   },
   "repositories": [
     {
@@ -27,5 +23,20 @@
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
-  ]
+  ],
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Scott Sanders <scott@stonecobra.com> (https://github.com/stonecobra)",
+  "homepage": "https://github.com/sproutle/donezo",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sproutle/donezo.git"
+  },
+  "main": "server.js"
 }
