@@ -27,7 +27,9 @@
   "scripts": {
     "start": "node server.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "~3.0.0beta6"
+  },
   "devDependencies": {},
   "engines": {
     "node": "*"

@@ -1,9 +1,20 @@
-var http = require('http');
- 
-var server = http.createServer(function (req, res) {
-  res.writeHead(200, { "Content-Type": "text/plain" })
-  res.end("Hello world\n");
+var app = require('express').createServer();
+
+app.get('/', function(req, res) {
+  console.log(req.headers);
+  res.end("GET /");
 });
  
-server.listen(process.env.PORT || 8001);
+app.get('/login', function(req, res) {
+  res.end("GET /login");
+});
 
+app.post('/login', function(req, res) {
+  res.end("POST /login");
+});
+
+app.post('/logout', function(req, res) {
+  res.end("POST /logout");
+});
+
+app.listen(8080);
