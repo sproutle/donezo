@@ -5,7 +5,9 @@ app.use(express.logger());
 app.use(express.bodyParser());
 
 app.use(express.cookieParser());
-app.use(express.session({secret: "lamp post"}));
+app.use(express.session({secret: "lamp_post"}));
+
+app.use(express.stactic(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   if (!req.session.username) {
@@ -21,7 +23,6 @@ app.get('/login', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-  console.log(req.body , req.body.username , users[req.body.username] , req.body.password);
   if (users[req.body.username] === req.body.password) {
     req.session.username = req.body.username;
     res.redirect("/");
