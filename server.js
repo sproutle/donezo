@@ -42,7 +42,7 @@ app.post('/logout', function(req, res) {
 });
 
 //can now use public folder//
-app.use(express.static(__dirname + '/public'));
+ app.use(express.static(__dirname + '/public'));
 
 //example database for users/passwords//
 var users= {
@@ -50,3 +50,5 @@ var users= {
 };
 
 app.listen(8080);
+
+console.log(__dirname);
