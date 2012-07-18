@@ -1,0 +1,64 @@
+/*general*/
+.navbar li.logo {
+  padding: 0px;
+  border-left: 4px solid black;
+}
+
+.navbar li{
+  padding: 5px 10px 5px 10px;
+  border: 2px solid black;
+  font-size: 20px;
+}
+
+.navbar li.right_border {
+  border-right: 4px solid black;
+}
+
+.navbar .nav{
+  margin-right: 100px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+/*home*/
+.welcome {
+  clear: left;
+  margin-left: 80px;
+  margin-bottom: 30px;
+}
+
+.about {
+  margin-left: 80px;
+}
+
+/*login*/
+input .login {
+  padding: 30px;
+  font-size: 15px;
+}
+
+.login {
+  padding: 30px;
+}
+
+.enter {
+  margin-left: 20px;
+}
+
+.new_user {
+  margin: 10px 30px 20px 244px;
+}
+
+/*account*/
+.data {
+  clear: left;
+  font-size: 15px;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.data li {
+  padding: 10px;
+  border: 1px solid black;
+
+}

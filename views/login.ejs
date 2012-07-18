@@ -3,21 +3,22 @@
 <head>
 
   <link rel="stylesheet" href="stylesheets/css/bootstrap.css" />
+  <link rel="stylesheet" href="stylesheets/style.css" />
 
   <title>Login</title>
 
 </head>
 <body>
 
-  <form method="POST" action="/login">
+  <form class="login" method="POST" action="/login">
     <label>Username:</label>
     <input type="text" name="username" />
 
     <label>Password:</label>
     <input type="password" name="password" />
 
-    <input type="submit" value="Enter" />
-    <input type="button" value="New User?" onClick="" />
+    <input class="enter" type="submit" value="Enter" /><br>
+    <input class="new_user" type="button" value="New User?" onClick="" />
   </form>
 
 </body>

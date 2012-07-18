@@ -3606,6 +3606,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar {
   color: #999999;
+  display: inline;
 }
 
 .navbar .brand:hover {

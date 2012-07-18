@@ -2,16 +2,25 @@
 <HTML>
 <head>
 
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 
   <title>Home</title>
 
-  <div class="navbar"><a>Home</a> | <a>Account</a> | <form method="POST" action="/logout"><input type="submit" value="Logout" /></form></div>
+  <div class="navbar">
+    <ol class="nav">
+      <li class="logo"><img src="http://placekitten.com/75/49"></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/account">Account</a></li>
+      <li class="right_border"><a href="/login">Logout</a></li>
+    </ol>
+  </div>
 
 </head>
 <body>
 
-  <h1>Hello <%= username %></h1>
+  <h1 class="welcome">Welcome <%= username %> to the Donezo Todo App</h1>
+  <h2 class="about">About Donezo...<h2>
 
 </body>
 </HTML>

@@ -16,7 +16,6 @@ app.get('/', function(req, res) {
     res.redirect("/login");
     return;
   }
-  console.log(req.session);
   res.render("home.ejs", {username:req.session.username});
 });
  
@@ -41,6 +40,15 @@ app.post('/logout', function(req, res) {
   res.redirect("/login");
 });
 
+//GET account function, account page//
+app.get('/account', function(req, res) {
+   if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
+  res.render("account.ejs", {username:req.session.username});
+});
+
 //can now use public folder//
  app.use(express.static(__dirname + '/public'));
 
@@ -50,5 +58,3 @@ var users= {
 };
 
 app.listen(8080);
-
-console.log(__dirname);
