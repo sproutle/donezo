@@ -20,6 +20,30 @@
   margin-bottom: 20px;
 }
 
+/*login*/
+.notice {
+  margin: 20px 20px 10px 33px;
+  font-size: 15px;
+}
+
+input .login {
+  padding: 30px;
+  font-size: 15px;
+}
+
+.login {
+  padding: 30px;
+  padding-top: 20px;
+}
+
+.enter {
+  margin-left: 20px;
+}
+
+.new_user {
+  margin: 10px 30px 20px 244px;
+}
+
 /*home*/
 .welcome {
   clear: left;
@@ -31,22 +55,64 @@
   margin-left: 80px;
 }
 
-/*login*/
-input .login {
-  padding: 30px;
+/*todo*/
+.project_list {
+  clear: left;
+  list-style-type: none;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.project_list li {
+  margin: 15px;
+  padding: 10px;
+}
+
+/*project*/
+.task_table {
+  border: 2px solid black;
+  padding: 5px;
+  clear: left;
+}
+
+.task_table td {
+  padding: 5px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.task_table .title_row {
+  font-weight: bold;
+}
+
+.proj_title {
+  clear: left;
+  margin-left: 100px;
+}
+
+.proj_group {
+  clear: left;
+  margin-left: 100px;
+  margin-bottom: 50px;
+}
+
+/*task*/
+ul li{
+  list-style-type: none;
+  margin-left: 20px;
   font-size: 15px;
 }
 
-.login {
-  padding: 30px;
-}
-
-.enter {
+.task_title {
   margin-left: 20px;
 }
 
-.new_user {
-  margin: 10px 30px 20px 244px;
+.a_title {
+  font-weight: bold;
+}
+
+.task_name {
+  margin-left: 16px;
 }
 
 /*account*/
@@ -59,6 +125,14 @@ input .login {
 
 .data li {
   padding: 10px;
-  border: 1px solid black;
-
+  border: 2px solid black;
+  display: block;
+  float: left;
+  clear: left;
+  margin-top: 10px;
 }
+
+.edit {
+  height: 43px;
+  margin-top: 10px;
+2

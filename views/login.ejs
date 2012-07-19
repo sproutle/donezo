@@ -10,6 +10,8 @@
 </head>
 <body>
 
+  <p class="notice">You are not logged in, Please login to continue.</p>
+
   <form class="login" method="POST" action="/login">
     <label>Username:</label>
     <input type="text" name="username" />
@@ -18,7 +20,7 @@
     <input type="password" name="password" />
 
     <input class="enter" type="submit" value="Enter" /><br>
-    <input class="new_user" type="button" value="New User?" onClick="" />
+    <input class="new_user" type="button" value="New User?" onClick="/new_user" />
   </form>
 
 </body>

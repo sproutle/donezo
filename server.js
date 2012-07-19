@@ -10,6 +10,8 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.session({secret: "lamp_post"}));
 
+
+
 //GET function, home page//
 app.get('/', function(req, res) {
   if (!req.session.username) {
@@ -21,7 +23,7 @@ app.get('/', function(req, res) {
  
  //GET login function, login page//
 app.get('/login', function(req, res) {
-  res.render("login.ejs")
+  res.render("login.ejs");
 });
 
 //POST login function, logs in//
@@ -48,6 +50,40 @@ app.get('/account', function(req, res) {
   }
   res.render("account.ejs", {username:req.session.username});
 });
+
+//GET todo function, todo page//
+app.get('/todo', function(req, res) {
+  if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
+  res.render("todo.ejs", {username:req.session.username});
+});
+
+//GET project function, projects page//
+app.get('/project', function(req, res) {
+  if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
+  res.render("project.ejs", {username:req.session.username});
+});
+
+//GET task function, task page//
+app.get('/task', function(req, res) {
+  if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
+  res.render("task.ejs", {username:req.session.username});
+});
+
+//GET new_user function, new user page//
+app.get('/new_user', function(req, res) {
+  res.render("new_user.ejs");
+});
+
+
 
 //can now use public folder//
  app.use(express.static(__dirname + '/public'));
