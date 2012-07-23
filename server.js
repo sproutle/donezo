@@ -1,6 +1,7 @@
 //use express now, create server//
 var express = require('express');
 var app = express.createServer();
+var secrets = require('./secrets');
 
 //checks login//
 app.use(express.logger());
