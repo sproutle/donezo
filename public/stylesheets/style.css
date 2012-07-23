@@ -8,50 +8,127 @@
   padding: 5px 10px 5px 10px;
   border: 2px solid black;
   font-size: 20px;
+  background-color: white;
 }
 
 .navbar li.right_border {
   border-right: 4px solid black;
 }
 
+.navbar li.left_border {
+  border-left: 4px solid black;
+}
+
 .navbar .nav{
-  margin-right: 100px;
-  margin-left: 50px;
-  margin-bottom: 20px;
+  margin: 20px 50px 20px 50px;
+  position: absolute;
+}
+
+div .black {
+  color: grey;
+  background-color: grey;
+  border: none;
+  line-height: 30px;
+}
+
+.invis {
+  color: grey;
+  background-color: grey;
+  width: 1235px;
+  line-height: 3em;
+  margin-left: 79px;
+  margin-right: 215px;
 }
 
 /*login*/
-.notice {
-  margin: 20px 20px 10px 33px;
-  font-size: 15px;
+.log_box {
+  background-color: grey;
+  color: grey;
+  line-height: 6em;
+  margin-right: 530px;
+  margin-left: 600px;
 }
 
-input .login {
-  padding: 30px;
-  font-size: 15px;
+.notice {
+  margin: -70px 550px 35px 550px;
+  font-size: 20px;
+  padding: 10px 5px 10px 5px;
+  text-align: center;
+  background-color: white;
+  border: 2px solid black;
+  position: absolute;
+}
+
+.login label{
+  padding: ;
+  font-size: 20px;
+  margin-right: 200px;
+  margin-bottom: 10px;
 }
 
 .login {
-  padding: 30px;
-  padding-top: 20px;
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-color: grey;
 }
 
 .enter {
   margin-left: 20px;
+  padding: 5px;
 }
 
 .new_user {
-  margin: 10px 30px 20px 244px;
+  margin-top: 20px;
+  margin-left: 275px;
+  padding: 5px;
+}
+
+.input_user {
+  margin-right: 70px;
+}
+
+.label_pass {
+  margin-top: 20px;
 }
 
 /*home*/
 .welcome {
   clear: left;
-  margin-left: 80px;
-  margin-bottom: 30px;
+  text-align: center;
+  padding: 20px 0px 20px 0px;
+  margin: 80px 221px 50px 79px;
+  background-color: grey;
+  color: white;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
 }
 
 .about {
+  margin-left: 80px;
+  border-left: 3px solid black;
+  border-bottom: 2px solid black;
+  padding-left: 7px;
+  margin-right: 1275px;
+  color: grey;
+}
+
+.des{
+  margin: 40px 220px 0px 80px;
+  padding-right: 25px;
+  padding-bottom: 15px;
+  font-size: 17px;
+  text-indent: 15px;
+  line-height: 2em;
+  border-right: 24px solid grey;
+  border-bottom: 8px solid grey;
+}
+
+.line {
+  border-top: 3px solid black;
+  color: white;
+  margin-right: 220px;
   margin-left: 80px;
 }
 
@@ -121,6 +198,8 @@ ul li{
   font-size: 15px;
   list-style-type: none;
   padding: 10px;
+  margin-top: -350px;
+  margin-left: 100px;
 }
 
 .data li {
@@ -130,9 +209,20 @@ ul li{
   float: left;
   clear: left;
   margin-top: 10px;
+  background-color: white;
 }
 
 .edit {
   height: 43px;
   margin-top: 10px;
-2
+  margin-left: 20px;
+}
+
+.grey_data {
+  color: grey;
+  background-color: grey;
+  margin: 100px 1350px 10px 80px;
+  line-height: 350px;
+  border: 2px solid black;
+  border-right: none;
+}

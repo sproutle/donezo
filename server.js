@@ -91,7 +91,9 @@ app.get('/new_user', function(req, res) {
 
 //example database for users/passwords//
 var users= {
-  "username": "password"
+  "username": "password",
+  "Laurainne": "lamp_post",
+  "Luna": "awesome"
 };
 
 app.listen(8080);

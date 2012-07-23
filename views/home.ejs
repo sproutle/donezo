@@ -11,8 +11,9 @@
     <ol class="nav">
       <li class="logo"><img src="http://placekitten.com/75/49"></li>
       <li><a href="/">Home</a></li>
-      <li><a href="/todo">Todo</a></li>
-      <li><a href="/account">Account</a></li>
+      <li class="right_border"><a href="/todo">Todo</a></li>
+      <li class="black">spaceapceapspacespacespacespacespacespacespacespacespace!</li>
+      <li class="left_border"><a href="/account">Logged in as <%= username %></a></li>
       <li class="right_border"><a href="/login">Logout</a></li>
     </ol>
   </div>
@@ -20,9 +21,14 @@
 </head>
 <body>
 
+  <p class="invis">i</p>
+
   <h1 class="welcome">Welcome <%= username %> to the Sproutle/Donezo Todo App</h1>
-  <h2 class="about">About Sproutle</h2>
-  <p>This todo app, is a combination of Cloudant's CouchDB, Connect/Express, JS and Node code, Bootstrap, and some JQuery. Built by Lauren Caswell and Jonathan Luna, led by Scott Sanders. </p>
+  <h2 class="about">About Donezo</h2>
+
+  <p class="des">This Todo app, is a combination of Cloudant's CouchDB, Connect/Express, JS and Node code, Bootstrap, and some JQuery. Built by Lauren Caswell and Jonathan Luna, led by Scott Sanders. Donezo will keep track of projects and their todo's. This app makes it easy to connect to the other members of a project, from any computer. One can keep track of everyone's progress, add a new task, change which task should be highest priority, and other useful tools and details we added in, just for fun!</p>
+
+  <p class="line">you cant see me!</p>
 
 </body>
 </HTML>
