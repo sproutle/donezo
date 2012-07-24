@@ -1,7 +1,19 @@
 /*general*/
-.navbar li.logo {
+.page_background {
+  margin-left: 79px;
+  margin-right: 210px;
+  background-color: #CCCCCC;
+  height: 1000px;
+}
+
+.navbar li.logo,
+.navbar li.user_icon {
   padding: 0px;
   border-left: 4px solid black;
+}
+
+.navbar li.userIcon {
+  padding: 0px;
 }
 
 .navbar li{
@@ -20,7 +32,7 @@
 }
 
 .navbar .nav{
-  margin: 20px 50px 20px 50px;
+  margin: 20px 0px 20px 50px;
   position: absolute;
 }
 
@@ -36,8 +48,6 @@ div .black {
   background-color: grey;
   width: 1235px;
   line-height: 3em;
-  margin-left: 79px;
-  margin-right: 215px;
 }
 
 /*login*/
@@ -56,20 +66,20 @@ div .black {
   text-align: center;
   background-color: white;
   border: 2px solid black;
+  border-left: none;
   position: absolute;
 }
 
 .login label{
-  padding: ;
   font-size: 20px;
   margin-right: 200px;
   margin-bottom: 10px;
 }
 
 .login {
-  margin-top: 20px;
-  padding-top: 15px;
-  padding-bottom: 20px;
+  margin-top: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   text-align: center;
   background-color: grey;
 }
@@ -93,12 +103,32 @@ div .black {
   margin-top: 20px;
 }
 
+.new_user_link {
+  margin-left: 870px;
+  display: inline-block;
+  margin-top: 50px;
+  background-color: white;
+  padding: 5px;
+  font-size: 15px;
+  color: black;
+  border: 2px solid black;
+  border-left: none;
+}
+
+.tiny_grey {
+  background-color: grey;
+  color: white;
+  margin: -45px 0px 0px 902px;
+  line-height: 5em;
+  width: 60px;
+}
+
 /*home*/
 .welcome {
   clear: left;
   text-align: center;
   padding: 20px 0px 20px 0px;
-  margin: 80px 221px 50px 79px;
+  margin: 80px 0px 50px 0px;
   background-color: grey;
   color: white;
   border-left: 4px solid black;
@@ -106,30 +136,31 @@ div .black {
 }
 
 .about {
-  margin-left: 80px;
+  margin-left: 10px;
   border-left: 3px solid black;
   border-bottom: 2px solid black;
   padding-left: 7px;
   margin-right: 1275px;
   color: grey;
+  background-color: white;
+  width: 100px;
 }
 
 .des{
-  margin: 40px 220px 0px 80px;
-  padding-right: 25px;
-  padding-bottom: 15px;
+  margin: 40px 0px 0px 0px;
+  padding: 10px 25px 15px 15px;
   font-size: 17px;
   text-indent: 15px;
   line-height: 2em;
   border-right: 24px solid grey;
   border-bottom: 8px solid grey;
+  background-color: white;
+  border-left: 4px solid #CCCCCC;
 }
 
 .line {
   border-top: 3px solid black;
-  color: white;
-  margin-right: 220px;
-  margin-left: 80px;
+  color: #CCCCCC;
 }
 
 /*todo*/
@@ -225,4 +256,112 @@ ul li{
   line-height: 350px;
   border: 2px solid black;
   border-right: none;
+}
+
+.profile_pic {
+  float: right;
+  margin-top: 110px;
+  margin-right: -370px;
+  border: 2px solid black;
+}
+
+.grey_profile {
+  color: grey;
+  background-color: grey;
+  line-height: 43em;
+  width: 200px;
+  float: right;
+  margin-top: 80px;
+  margin-right: 225px;
+  border: 2px solid black;
+  border-left: none;
+}
+
+.prof_text {
+  font-size: 20px;
+  background-color: grey;
+  border-top: 2px solid black;
+  color: white;
+  padding: 5px;
+  float: right;
+  margin-top: 80px;
+  padding-left: 10px;
+}
+
+.change {
+  color: white;
+}
+
+/*new user*/
+.create_login label {
+  font-size: 20px;
+  margin-right: 200px;
+  margin-bottom: 10px;
+}
+
+.create_login {
+  margin-top: 100px;
+  padding: 25px 0px 25px 90px;
+  background-color: grey;
+}
+
+.create_login input[type="text"], 
+.create_login input[type="password"] {
+  height: 28px;
+}
+
+.label_email {
+  margin-top: 20px;
+}
+
+.enter_info {
+  margin-left: 680px;
+  margin-top: -10px;
+  font-size: 18px;
+  padding: 10px;
+  position: absolute;
+}
+
+.tiny_box {
+  color: grey;
+  background-color: grey;
+  margin-left: 670px;
+  margin-top: 125px;
+  line-height: 40px;
+  width: 60px;
+  border: 2px solid black;
+  border-top: none;
+  border-right: none;
+}
+
+.add_pic {
+  float: right;
+  margin: 100px 220px 0px 0px;
+  border: 6px solid white;
+}
+
+.add_icon {
+  border: 2px solid black;
+  border-right: 3px solid black;
+  border-top: none;
+  margin-left: 517px;
+  margin-top: -400px;
+}
+
+.icon_text {
+  background-color: white;
+  font-size: 20px;
+  border: 2px solid black;
+  padding:5px;
+  margin: -400px 775px 300px 400px;
+  color: grey;
+}
+
+.pic_text {
+  font-size: 20px;
+  color: grey;
+  border: 2px solid black;
+  padding: 5px;
+  background-color: white;
+  margin: -60px 660px 150px 610px;
 }
