@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express.createServer();
 var secrets;
-if (proccess.env.HOME === "/home/node") {
+if (process.env.HOME === "/home/node") {
   secrets = require('/home/node/secrets');
 }
 else {
