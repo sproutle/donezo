@@ -12,8 +12,10 @@
     <ol class="nav">
       <li class="logo"><img src="http://placekitten.com/75/49"></li>
       <li><a href="/">Home</a></li>
-      <li><a href="/todo">Todo</a></li>
-      <li><a href="/account">Account</a></li>
+      <li class="right_border"><a href="/todo">Todo</a></li>
+      <li class="black">spaceapceapspacespacespacespacespacespacespacespa!</li>
+      <li class="user_icon"><img src="http://placekitten.com/65/49"></li>
+      <li><a href="/account">Logged in as <%= username %></a></li>
       <li class="right_border"><a href="/login">Logout</a></li>
     </ol>
   </div>
@@ -23,38 +25,41 @@
   
   <p class="invis">invisible</p>
 
-    <h1 class="proj_title">Title of Project</h1>
-    <h2 class="proj_group">Group or orginization associated with</h2><br>
-    <h3 class="task_name">Task Name</h3><br>
+    <h1 class="task_title">Add CSS</h1>
+    <h2 class="task_group">Project associated with</h2><br>
 
+   <ul class="task_author">
+      <li id="top" class="a_title">Task Name: <span class="grayed">Add CSS</span></li><br>
+      <li id="top" class="a_title">Task Created by: <span class="grayed">username</span></li>
+      <li class="a_title">Date Created: <span class="grayed">month/day/year</span></li>
+      <li class="a_title">Task Information: </li>
+      <li id="indent" class="grayed">Detailed description...yada, yada, yada...add some simple CSS so it looks like a web page!</li>
+      <li class="a_title">Task Impotance: <span class="grayed">Slightly Important</span></li>
+      <li class="a_title">Due: <span class="grayed">in 3 days!</span></li>
+    </ul><br><br><br><br>
 
-   <ul>
-      <li class="a_title">Task Created by: </li>
-      <li>username</li><br>
-      <li class="a_title">Date Created</li>
-      <li>month, day, year</li><br><br>
-      <li class="a_title">Task Information: </li><br>
-      <li>Detailed description...yada, yada, yada...</li><br><br>
-      <li class="a_title">Task Impotance: </li>
-      <li>Just Important</li><br>
-      <li class="a_title">Due: </li>
-      <li>in this many days.</li>
-    </ul><br><br>
+    <p class="full_line">blik</p>
 
+    <p class="grey_square">sque</p>
+    <h3 class="task_name">Progress:</h3>
+    <p class="grey_rectangle">rect</p>
+    <h3 class="add_prog"><a href="">Add Progress</a></h3><br>
 
-    <h3 class="task_name">Progress:</h3><br>
-
-    <ul>
-      <li class="a_title">On </li>
-      <li>this date...</li><br>
-      <li class="a_title">username </li>
-      <li>did this and this to help out with this task.</li><br><br>
-      <li class="a_title">On </li>
-      <li>this date...</li><br>
-      <li class="a_title">username </li>
-      <li>did this and this to help out with this task, finishing it.</li><br><br>
+    <ul class="progression"><br>
+      <span class="input_prog">
+        <li class="icon"><img src="http://placekitten.com/90/49" /><li>
+        <li class="a_title">On <span class="grayed">month/date/year</span></li>
+        <li class="a_title">username <span class="grayed">did this to help out</span></li>
+      </span>
+      <li class="split_line">blok</li><br>
+      <span class="input_prog">
+        <li><img class="icon" src="http://placekitten.com/97/49" /></li>
+        <li class="a_title">On <span class="grayed">month/date/year</span></li>
+        <li class="a_title">username <span class="grayed">did this and this <span class="finished">FINISHING THE TASK</span></span></li>
+      </span>
     </ul>
 
+    <p class="the_end">~Credits to Lauren Caswell/Jonathan Luna/Scott Sanders~</p>
 
   </body>
   </HTML>

@@ -12,8 +12,10 @@
     <ol class="nav">
       <li class="logo"><img src="http://placekitten.com/75/49"></li>
       <li><a href="/">Home</a></li>
-      <li><a href="/todo">Todo</a></li>
-      <li><a href="/account">Account</a></li>
+      <li class="right_border"><a href="/todo">Todo</a></li>
+      <li class="black">spaceapceapspacespacespacespacespacespacespacespa!</li>
+      <li class="user_icon"><img src="http://placekitten.com/65/49"></li>
+      <li><a href="/account">Logged in as <%= username %></a></li>
       <li class="right_border"><a href="/login">Logout</a></li>
     </ol>
   </div>
@@ -26,19 +28,27 @@
     <h1 class="proj_title">Title of Project</h1>
     <h2 class="proj_group">Group or orginization associated with</h2>
 
+    <p class="table_white">asdfg</p>
+    <p class="table_grey">qwerty</p>
 
     <table class="task_table">
       <tr class="title_row">
         <td class="completed">Task Completed? </td>
-        <td class="name">Task Name: </td>
-        <td class="info">Task Information: </td>
+        <td class="name"><span class="white">w</span>Task Name: <span class="white">qwerty</span></td>
+        <td class="info"><span class="white">somespacesomething!</span>Task Information: <span class="white">songsomethingsomething</span></td>
         <td class="due">Task Importance</td>
       </tr>
       <tr>
-        <td>if yes, will cross out entire task and have date finished, and move to bottom</td>
-        <td><a href="/task">task name (onClick will take to task details), limited characters</a></td>
-        <td>brief overview, limit number of characters</td>
-        <td>days left until due date or/and how important is it? more important at top</td>
+        <td>NO</td>
+        <td>Add CouchDB</td>
+        <td>Integrate CouchDB to actually store data</td>
+        <td>Very Important<br>5 days left!</td>
+      </tr>
+      <tr>
+        <td>NO</td>
+        <td><a href="/task">Adding CSS</a></td>
+        <td>create a simple CSS layout</td>
+        <td>slightly important<br>3 days left!</td>
       </tr>
     </table>
 

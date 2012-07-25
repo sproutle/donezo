@@ -1,6 +1,6 @@
-//use express now, create server//
 var express = require('express');
 var app = express.createServer();
+
 var secrets;
 if (process.env.HOME === "/home/node") {
   secrets = require('/home/node/secrets');
@@ -9,12 +9,9 @@ else {
   secrets = require('./secrets');
 }
 
-
-//checks login//
 app.use(express.logger());
 app.use(express.bodyParser());
 
-//cookie and session while logged in//
 app.use(express.cookieParser());
 app.use(express.session({secret: "lamp_post"}));
 
@@ -93,10 +90,8 @@ app.get('/new_user', function(req, res) {
 
 
 
-//can now use public folder//
  app.use(express.static(__dirname + '/public'));
 
-//example database for users/passwords//
 var users= {
   "username": "password",
   "Laurainne": "lamp_post",

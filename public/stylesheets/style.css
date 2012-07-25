@@ -1,11 +1,4 @@
 /*general*/
-.page_background {
-  margin-left: 79px;
-  margin-right: 210px;
-  background-color: #CCCCCC;
-  height: 1000px;
-}
-
 .navbar li.logo,
 .navbar li.user_icon {
   padding: 0px;
@@ -48,6 +41,14 @@ div .black {
   background-color: grey;
   width: 1235px;
   line-height: 3em;
+  margin-left: 80px;
+}
+
+.the_end {
+  color: #CCCCCC;
+  padding-top: 200px;
+  text-align: center;
+  font-size: 10px;
 }
 
 /*login*/
@@ -81,7 +82,7 @@ div .black {
   padding-top: 25px;
   padding-bottom: 25px;
   text-align: center;
-  background-color: grey;
+  background-color: #CCCCCC;
 }
 
 .enter {
@@ -123,12 +124,86 @@ div .black {
   width: 60px;
 }
 
+/*new user*/
+.create_login label {
+  font-size: 20px;
+  margin-right: 200px;
+  margin-bottom: 10px;
+}
+
+.create_login {
+  margin-top: 100px;
+  padding: 25px 0px 25px 90px;
+  background-color: #CCCCCC;
+}
+
+.create_login input[type="text"], 
+.create_login input[type="password"] {
+  height: 28px;
+}
+
+.label_email {
+  margin-top: 20px;
+}
+
+.enter_info {
+  margin-left: 680px;
+  margin-top: -10px;
+  font-size: 18px;
+  padding: 10px;
+  position: absolute;
+}
+
+.tiny_box {
+  color: grey;
+  background-color: grey;
+  margin-left: 670px;
+  margin-top: 125px;
+  line-height: 40px;
+  width: 60px;
+  border: 2px solid black;
+  border-top: none;
+  border-right: none;
+}
+
+.add_pic {
+  float: right;
+  margin: 100px 220px 0px 0px;
+  border: 6px solid white;
+}
+
+.add_icon {
+  border: 2px solid black;
+  border-right: 3px solid black;
+  border-top: none;
+  margin-left: 517px;
+  margin-top: -400px;
+}
+
+.icon_text {
+  background-color: white;
+  font-size: 20px;
+  border: 2px solid black;
+  padding:5px;
+  margin: -400px 775px 300px 400px;
+  color: grey;
+}
+
+.pic_text {
+  font-size: 20px;
+  color: grey;
+  border: 2px solid black;
+  padding: 5px;
+  background-color: white;
+  margin: -60px 660px 150px 610px;
+}
+
 /*home*/
 .welcome {
   clear: left;
   text-align: center;
   padding: 20px 0px 20px 0px;
-  margin: 80px 0px 50px 0px;
+  margin: 80px 220px 50px 80px;
   background-color: grey;
   color: white;
   border-left: 4px solid black;
@@ -136,92 +211,292 @@ div .black {
 }
 
 .about {
-  margin-left: 10px;
+  margin-left: 80px;
   border-left: 3px solid black;
   border-bottom: 2px solid black;
   padding-left: 7px;
-  margin-right: 1275px;
   color: grey;
   background-color: white;
-  width: 100px;
+  width: 170px;
 }
 
 .des{
-  margin: 40px 0px 0px 0px;
-  padding: 10px 25px 15px 15px;
+  margin: 40px 220px 0px 80px;
+  padding: 10px 20px 15px 5px;
   font-size: 17px;
   text-indent: 15px;
   line-height: 2em;
-  border-right: 24px solid grey;
-  border-bottom: 8px solid grey;
+  border-right: 24px solid #CCCCCC;
+  border-bottom: 8px solid #CCCCCC;
   background-color: white;
-  border-left: 4px solid #CCCCCC;
 }
 
 .line {
   border-top: 3px solid black;
-  color: #CCCCCC;
+  color: white;
+  margin-left: 80px;
+  margin-right: 220px;
 }
 
 /*todo*/
+.boxed {
+  color: grey;
+  background-color: grey;
+  width: 195px;
+  line-height: 5em;
+  margin-left: 80px;
+  margin-top: 80px;
+}
+
+.box {
+  color: #CCCCCC;
+  background-color: #CCCCCC;
+  float: right;
+  width: 1400px;
+  line-height: 13.8em;
+  margin-top: 195px;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+
+.title_list {
+  color: grey;
+  margin-top: -65px;
+  margin-left: 90px;
+  border: 3px solid black;
+  background-color: white;
+  width: 170px;
+  padding: 10px;
+  position: absolute;
+}
+
 .project_list {
   clear: left;
   list-style-type: none;
-  font-size: 25px;
-  padding: 20px;
+  padding: 20px 20px 20px 0px;
+  color: grey;
+  background-color: grey;
+  margin-top: 50px;
+  margin-left: 0px;
+  width: 180px;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  position: absolute;
 }
 
 .project_list li {
-  margin: 15px;
+  margin: 15px -130px 20px 80px;
   padding: 10px;
+  font-size: 25px;
+  border: 2px solid black;
+  background-color: white;
 }
 
 /*project*/
-.task_table {
-  border: 2px solid black;
-  padding: 5px;
+.proj_title,
+.task_title {
   clear: left;
+  text-align: center;
+  padding: 20px 0px 20px 0px;
+  margin: 80px 220px 50px 80px;
+  background-color: grey;
+  color: white;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+}
+
+.proj_group,
+.task_group {
+  clear: left;
+  margin-left: 80px;
+  margin-bottom: 50px;
+  color: grey;
+  border-left: 3px solid black;
+  border-bottom: 3px solid black;
+  width: 450px;
+  padding: 10px;
+}
+
+.task_table {
+  border-top: 3px solid black;
+  clear: left;
+  margin-left: 80px;
+  margin-right: 220;
+  margin-top: -210px;
+  position: absolute;
 }
 
 .task_table td {
   padding: 5px;
+  font-size: 20px;
   border: 1px solid black;
-  margin: 20px;
+  border-bottom: none;
+  color: black;
+  padding: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.task_table td a {
+  color: black;
 }
 
 .task_table .title_row {
   font-weight: bold;
+  text-align: center;
+  border: 1px solid black;
+  color: black;
 }
 
-.proj_title {
-  clear: left;
-  margin-left: 100px;
+.white {
+  color: white;
 }
 
-.proj_group {
-  clear: left;
-  margin-left: 100px;
-  margin-bottom: 50px;
+.table_grey {
+  color: #CCCCCC;
+  background-color: #CCCCCC;
+  line-height: 20em;
+  width: 100%;
 }
+
+.table_white {
+  color: white;
+  background-color: white;
+  float: right;
+  width: 1457px;
+  line-height: 17em;
+  margin-top: 62px;
+}
+
+/*Add New Project*/
 
 /*task*/
-ul li{
-  list-style-type: none;
-  margin-left: 20px;
-  font-size: 15px;
+.task_group {
+  width: 280px;
 }
 
-.task_title {
-  margin-left: 20px;
+.task_author {
+  color: grey;
+  background-color: #CCCCCC;
+  margin-left: -20px;
+  padding: 30px 0px 0px 20px
+
 }
+
+.task_author li{
+  list-style-type: none;
+  margin-left: 80px;
+  font-size: 20px;
+  padding: 10px;
+  background-color: white;
+  border-left: 3px solid black;
+  margin-right: 220px;
+} 
 
 .a_title {
-  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+#indent {
+  padding-left: 50px;
+}
+
+.grayed {
+  color: grey;
+}
+
+#top {
+  border-top: 3px solid black;
+}
+
+.full_line {
+  color: grey;
+  background-color: grey;
+  border-top: 4px solid black;
+}
+
+.grey_square {
+  color: grey;
+  background-color: grey;
+  line-height: 4em;
+  width: 110px;
+  float: left;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+.grey_rectangle {
+  color: grey;
+  background-color: grey;
+  line-height: 4em;
+  width: 150px;
+  float: right;
+  margin-top: 40px;
+  margin-right: 230px;
 }
 
 .task_name {
-  margin-left: 16px;
+  background-color: white;
+  color: grey;
+  border: 3px solid black;
+  border-right: none;
+  border-bottom: none;
+  font-size: 20px;
+  margin-left: 80px;
+  padding: 10px;
+  margin-top: 50px;
+  margin-right: 1310px;
+  position: absolute;
 }
+
+.add_prog {
+  background-color: white;
+  color: grey;
+  border: 3px solid black;
+  border-left: none;
+  border-bottom: none;
+  font-size: 20px;
+  margin-left: 1130px;
+  padding: 10px;
+  margin-top: 50px;
+  margin-right: 220px;
+  position: absolute;
+}
+
+.progression {
+  background-color: grey;
+  margin-top: 100px;
+  margin-left: -20px;
+}
+
+.progression li {
+  list-style-type: none;
+  margin-left: 100px;
+  padding-top: 25px;
+  background-color: white;
+  font-size: 18px;
+}
+
+.icon {
+  border: 2px solid black;
+  margin-right: 1000px;
+}
+
+.split_line {
+  border-top: 4px solid black;
+  color: grey;
+  background-color: grey;
+}
+.input_prog {
+  border: 4px solid black;
+}
+
+.finished {
+  color: black;
+}
+
+/*Add New Task/Edit*/
 
 /*account*/
 .data {
@@ -292,76 +567,3 @@ ul li{
   color: white;
 }
 
-/*new user*/
-.create_login label {
-  font-size: 20px;
-  margin-right: 200px;
-  margin-bottom: 10px;
-}
-
-.create_login {
-  margin-top: 100px;
-  padding: 25px 0px 25px 90px;
-  background-color: grey;
-}
-
-.create_login input[type="text"], 
-.create_login input[type="password"] {
-  height: 28px;
-}
-
-.label_email {
-  margin-top: 20px;
-}
-
-.enter_info {
-  margin-left: 680px;
-  margin-top: -10px;
-  font-size: 18px;
-  padding: 10px;
-  position: absolute;
-}
-
-.tiny_box {
-  color: grey;
-  background-color: grey;
-  margin-left: 670px;
-  margin-top: 125px;
-  line-height: 40px;
-  width: 60px;
-  border: 2px solid black;
-  border-top: none;
-  border-right: none;
-}
-
-.add_pic {
-  float: right;
-  margin: 100px 220px 0px 0px;
-  border: 6px solid white;
-}
-
-.add_icon {
-  border: 2px solid black;
-  border-right: 3px solid black;
-  border-top: none;
-  margin-left: 517px;
-  margin-top: -400px;
-}
-
-.icon_text {
-  background-color: white;
-  font-size: 20px;
-  border: 2px solid black;
-  padding:5px;
-  margin: -400px 775px 300px 400px;
-  color: grey;
-}
-
-.pic_text {
-  font-size: 20px;
-  color: grey;
-  border: 2px solid black;
-  padding: 5px;
-  background-color: white;
-  margin: -60px 660px 150px 610px;
-}
