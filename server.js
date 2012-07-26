@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express.createServer();
+var nano = require('nano');
 
 var secrets;
 if (process.env.HOME === "/home/node") {
@@ -9,11 +10,55 @@ else {
   secrets = require('./secrets');
 }
 
+var db = nano("https://" + secrets.username + ":" + secrets.password + "@sproutle.cloudant.com/donezo-demo");
+db.list(function (err, body) {
+  if (err) throw err;
+  body.rows.forEach(function (item, index) {
+    console.log(index, item);
+  });
+});
+
+CouchStore.prototype.__proto__ = express.session.Store.prototype;
+function CouchStore(db) {
+  this.db = db;
+}
+
+CouchStore.prototype.get = function (sid, callback) {
+  this.db.get(sid, function (err, body) {
+    if (err) {
+      if (err.error === "not_found") {
+        return callback();
+      };
+      return callback(err);
+    }
+    callback(null, body);
+  });
+};
+
+CouchStore.prototype.set = function (sid, session, callback) {
+  this.db.insert(session, sid, function (err, body) {
+    if (err) return callback(err);
+    callback();
+  });
+};
+
+CouchStore.prototype.destroy = function (sid, callback) {
+  callback(new Error("TODO: implement destroy"));
+};
+
+CouchStore.prototype.length = function (callback) {
+  callback(new Error("TODO: implement length"));
+};
+
+CouchStore.prototype.clear = function (callback) {
+  callback(new Error("TODO: implement clear"));
+};
+
 app.use(express.logger());
 app.use(express.bodyParser());
 
 app.use(express.cookieParser());
-app.use(express.session({secret: "lamp_post"}));
+app.use(express.session({secret: "lamp_post", store: new CouchStore(db)}));
 
 
 
@@ -86,6 +131,15 @@ app.get('/task', function(req, res) {
 //GET new_user function, new user page//
 app.get('/new_user', function(req, res) {
   res.render("new_user.ejs");
+});
+
+//GET profile function, profile page//
+app.get('/profile', function(req, res) {
+  if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
+  res.render("profile.ejs", {username:req.session.username});
 });
 
 
