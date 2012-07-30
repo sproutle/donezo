@@ -322,7 +322,7 @@ div .black {
   clear: left;
   margin-left: 80px;
   margin-right: 220;
-  margin-top: -210px;
+  margin-top: -59px;
   position: absolute;
 }
 
@@ -348,6 +348,31 @@ div .black {
   color: black;
 }
 
+.task_item {
+  font-size: 20px;
+  list-style-type: none;
+  padding: 10px;
+  margin-top: 13px;
+  text-align: center;
+  margin-left: -35px;
+}
+
+.isDone {
+  width: 165px;
+}
+
+.title {
+  width: 232px;
+}
+
+.desc {
+  width: 618px;
+}
+
+.due {
+  width: 116px;
+}
+
 .white {
   color: white;
 }
@@ -355,33 +380,9 @@ div .black {
 .table_grey {
   color: #CCCCCC;
   background-color: #CCCCCC;
-  line-height: 20em;
+  line-height: 4.9em;
   width: 100%;
   border-top: 2px solid black;
-}
-
-.table_white {
-  color: white;
-  background-color: white;
-  float: right;
-  width: 1437px;
-  line-height: 19em;
-  margin-top: 62px;
-}
-
-.full_line1 {
-  color: #CCCCCC;
-  background-color: #CCCCCC;
-  border-top: 4px solid black;
-}
-
-.light_grey1 {
-  color: #CCCCCC;
-  background-color: #CCCCCC;
-  line-height: 9.3em;
-  width: 110px;
-  float: left;
-  margin-left: 100px;
 }
 
 .include_username {
@@ -393,6 +394,10 @@ div .black {
   border-right: 1px solid black;
   padding: 5px;
   padding-top: 3px;
+}
+
+.done {
+  text-decoration: line-through;
 }
 
 /*Add New Project*/
@@ -525,7 +530,7 @@ li.split_line {
   margin-right: -220px;
 }
 
-li.input_prog {
+li.input_prog, {
   border: 4px solid black;
 }
 

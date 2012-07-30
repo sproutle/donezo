@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
 
-  <title>Todo</title>
+  <title>Project</title>
 
   <div class="navbar">
     <ol class="nav">
@@ -28,58 +28,38 @@
     <h1 class="proj_title">Title of Project</h1>
     <h2 class="proj_group">Group or orginization associated with</h2>
 
-    <p class="table_white">asdfg</p>
     <p class="table_grey">qwerty</p>
 
     <table class="task_table">
-      <tr class="title_row">
-        <td class="completed">Task Completed? </td>
-        <td class="name"><span class="white">w</span>Task Name: <span class="white">qwerty</span></td>
-        <td class="info"><span class="white">somespacesomething!</span>Task Information: <span class="white">songsomethingsomething</span></td>
-        <td class="due">Task Importance</td>
-      </tr>
-      <tr>
-        <td>NO</td>
-        <td>Add CouchDB</td>
-        <td>Integrate CouchDB to actually store data</td>
-        <td>Very Important<br>5 days left!</td>
-      </tr>
-      <tr>
-        <td>NO</td>
-        <td><a href="/task">Adding CSS</a></td>
-        <td>create a simple CSS layout</td>
-        <td>slightly important<br>3 days left!</td>
-      </tr>
-    </table><br><br><br><br><br>
-
-    <p class="full_line1">blik</p><br><br><br>
-
-    <p class="grey_square">sque</p>
-    <h3 class="task_name">Progress:</h3>
-    <p class="grey_rectangle">rect</p>
-    <h3 class="add_prog"><a href="">Add Progress</a></h3><br>
-
-    <ul class="progression"><br>
-      <span class="input_prog">
-        <p class="light_grey1">:P</p>
-        <a href="/profile"><img class="icon" src="http://placekitten.com/90/49" /></a>
-        <p class="include_username">username</p>
-        <li class="a_title"><br>In Referance to the <a href="/task">Add CSS</a> Task...</li>
-        <li class="a_title">On <span class="grayed">month/date/year</span></li>
-        <li class="a_title">username <span class="grayed">did this to help out</span><br><br></li>
-      </span>
-      <li class="split_line">blok</li><br>
-      <span class="input_prog">
-        <p class="light_grey1">:P</p>
-        <a href="/profile"><img class="icon" src="http://placekitten.com/97/49" /></a>
-        <p class="include_username">username</p>
-        <li class="a_title"><br>In Referance to the <a href="/task">Add CSS</a> Task...</li>
-        <li class="a_title">On <span class="grayed">month/date/year</span></li>
-        <li class="a_title">username <span class="grayed">did this and this <span class="finished">FINISHING THE TASK</span></span><br><br></li><br><br>
-      </span>
-    </ul>
+      <thead>
+        <tr class="title_row">
+          <td class="isDone">Task Completed? </td>
+          <td class="title">Task Name: </td>
+          <td class="desc">Task Information: </td>
+          <td class="due">Due Date: </td>
+        </tr>
+      </thead>
+      <tbody class="sortable">
+<% for (var i=0; i<rows.length; i++) { var row = rows[i]; %>
+        <tr class="task_item<%= row.isDone? " done": "" %>">
+          <td class="isDone"><%= row.isDone? "YES": "NO" %></td>
+          <td class="title"><a href="/task/<%= i %>"><%= row.title %></a></td>
+          <td class="desc"><%= row.description %></td>
+          <td class="due"><%= row.dueDate %></td>
+        </tr>
+<% } %>
+      </tbody>
+    </table>
 
     <p class="the_end">~Credits to Lauren Caswell/Jonathan Luna/Scott Sanders~</p>
+
+  <script type"text/javascript" src="/javascripts/js/jquery-1.7.2.min.js"></script>
+  <script src="/sortable/jquery.sortable.js"></script>
+  <script>
+    $('.sortable').sortable().bind('sortupdate', function() {
+      console.log(this, arguments);
+    });
+  </script>
 
   </body>
   </HTML>

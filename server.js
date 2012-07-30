@@ -14,7 +14,6 @@ var db = nano("https://" + secrets.username + ":" + secrets.password + "@sproutl
 db.list(function (err, body) {
   if (err) throw err;
   body.rows.forEach(function (item, index) {
-    console.log(index, item);
   });
 });
 
@@ -43,7 +42,7 @@ CouchStore.prototype.set = function (sid, session, callback) {
 };
 
 CouchStore.prototype.destroy = function (sid, callback) {
-  callback(new Error("TODO: implement destroy"));
+  callback(new Error("TODO: implement clear"));
 };
 
 CouchStore.prototype.length = function (callback) {
@@ -111,12 +110,17 @@ app.get('/todo', function(req, res) {
 });
 
 //GET project function, projects page//
-app.get('/project', function(req, res) {
+app.get('/projects/:project_id', function(req, res, next) {
   if (!req.session.username) {
     res.redirect("/login");
     return;
   }
-  res.render("project.ejs", {username:req.session.username});
+  db.view("tasks", "all", {startkey: [req.params.project_id], endkey: [req.params.project_id, 100]}, function(err, body) {
+    if (err) return next(err);
+    var project = body.rows.splice(0, 1)[0].value;
+    var rows = body.rows.map(function (row) { return row.value; });
+    res.render("project.ejs", {username:req.session.username, rows:rows, project:project});
+  })
 });
 
 //GET task function, task page//
