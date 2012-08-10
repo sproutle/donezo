@@ -1,3 +1,4 @@
+// issue: when i load /projects works fine, load /project/project_id works fine, but when i go back to /projects, doesnt work, when I go to projects/project_id it doesnt work either. push refresh on either page while its not working, and it fixes itself...WHAT?
 // Load all the required libraries.
 require(["backbone", "dombuilder"], function (Backbone, domBuilder) {
 
