@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <title>Donezo</title>
+  <link rel="stylesheet" href="/jam/bootstrap/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div id = "topbar" class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#~">Donezo</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div id="home" class="row-fluid">
+      <div class="span12 hero-unit">
+        <h1>Home Page</h1>
+        <p>About this application: This was a practice assignment to learn about programming. This site uses Jam, Node.js, Bootstrap.css, CouchDB with Nano (the node library for couch), Express, Dombuilder, JQuery plugins, and Backbone with Underscore. Credits go to Scott Sanders (project leader), Lauren Caswell (intern), Jonathan Luna (intern), and Tim Caswell (teacher). Named Donezo, this site is a todo app that is in the form of many projects with many tasks per project. The user can add whichever projects they want, existing or new, to their account and then start working. The unique thing about this application is that more than one user can be included in the same project and everyone included in the project can edit it or comment it at the bottom. To get to your project page, click on your username in the top-right corner (after logged in) to begin exploring how interactive this todo app is with other users.</p>
+      </div>
+    </div>
+
+    <div id="app" style="display:none;" class="row-fluid">
+
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <ul id="sidebar" class="nav nav-list">
+            <li class="nav-header">Loading...</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="span9">
+        <div id="main" class="hero-unit">
+          Loading...
+        </div>
+      </div>
+
+      <div class="span9">
+        <div id="taskList" class="hero-unit">
+          Loading...
+        </div>
+      </div>
+
+        <div class="span3">
+          <div id="comments" class="hero-unit">
+            Loading...
+          </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+      <p>~Credits to Jonathan Luna/Scott Sanders/Lauren Caswell/Tim Caswell from Team Sproutle/Donezo~</p>
+    </footer>
+  </div>
+
+  <script src="/jam/jquery/jquery.js"></script>
+  <script src="/jam/bootstrap/js/bootstrap-dropdown.js"></script>
+  <script src="/jam/require.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

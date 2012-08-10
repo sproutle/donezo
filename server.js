@@ -1,14 +1,17 @@
 var express = require('express');
 var app = express.createServer();
 var nano = require('nano');
+var secrets = require('./secrets');
 
-var secrets;
-if (process.env.HOME === "/home/node") {
-  secrets = require('/home/node/secrets');
-}
-else {
-  secrets = require('./secrets');
-}
+app.use(express.logger());
+app.use(express.cookieParser());
+app.use(express.session({secret: "他们的专业知识与" }));
+app.use(express.bodyParser());
+app.use(express.static(__dirname + "/public"));
+
+app.listen(8000);
+
+console.log("http://localhost:8000/");
 
 var db = nano("https://" + secrets.username + ":" + secrets.password + "@sproutle.cloudant.com/donezo-demo");
 db.list(function (err, body) {
@@ -42,119 +45,84 @@ CouchStore.prototype.set = function (sid, session, callback) {
 };
 
 CouchStore.prototype.destroy = function (sid, callback) {
-  callback(new Error("TODO: implement clear"));
+  this.db.destroy(sid, null, function (err, body) {
+    if (err) return callback(err);
+    callback();
+  });
 };
 
-CouchStore.prototype.length = function (callback) {
-  callback(new Error("TODO: implement length"));
-};
+// CouchStore.prototype.length = function (callback) {
+//   callback(new Error("TODO: implement length"));
+// };
 
-CouchStore.prototype.clear = function (callback) {
-  callback(new Error("TODO: implement clear"));
-};
-
-app.use(express.logger());
-app.use(express.bodyParser());
-
-app.use(express.cookieParser());
-app.use(express.session({secret: "lamp_post", store: new CouchStore(db)}));
+// CouchStore.prototype.clear = function (callback) {
+//   callback(new Error("TODO: implement clear"));
+// };
 
 
-
-//GET function, home page//
-app.get('/', function(req, res) {
-  if (!req.session.username) {
-    res.redirect("/login");
-    return;
-  }
-  res.render("home.ejs", {username:req.session.username});
-});
- 
- //GET login function, login page//
-app.get('/login', function(req, res) {
-  res.render("login.ejs");
-});
-
-//POST login function, logs in//
-app.post('/login', function(req, res) {
-  if (users[req.body.username] === req.body.password) {
+app.post("/login", function (req, res) {
+  console.log(req.body, db.users[req.body.username]);
+  if (db.users[req.body.username] === req.body.password) {
     req.session.username = req.body.username;
-    res.redirect("/");
-    return;
+    if (req.body.rememberMe) {
+      req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
+    } else {
+      req.session.cookie.maxAge = null;
+    }
   }
-  res.redirect("/login");
+  res.send(req.session);
 });
 
-//POST logout function, logs out//
-app.post('/logout', function(req, res) {
-  req.session.username = false;
-  res.redirect("/login");
+app.get("/session", function (req, res) {
+  res.send(req.session);
 });
 
-//GET account function, account page//
-app.get('/account', function(req, res) {
-   if (!req.session.username) {
-    res.redirect("/login");
-    return;
-  }
-  res.render("account.ejs", {username:req.session.username});
-});
-
-//GET todo function, todo page//
-app.get('/todo', function(req, res) {
-  if (!req.session.username) {
-    res.redirect("/login");
-    return;
-  }
-  res.render("todo.ejs", {username:req.session.username});
-});
-
-//GET project function, projects page//
-app.get('/projects/:project_id', function(req, res, next) {
-  if (!req.session.username) {
-    res.redirect("/login");
-    return;
-  }
-  db.view("tasks", "all", {startkey: [req.params.project_id], endkey: [req.params.project_id, 100]}, function(err, body) {
+app.post("/logout", function (req, res, next) {
+  req.session.regenerate(function (err) {
     if (err) return next(err);
-    var project = body.rows.splice(0, 1)[0].value;
-    var rows = body.rows.map(function (row) { return row.value; });
-    res.render("project.ejs", {username:req.session.username, rows:rows, project:project});
-  })
+    res.send(req.session);
+  });
 });
 
-//GET task function, task page//
-app.get('/task', function(req, res) {
+app.get("/projects", checkSession, function (req, res) {
+  res.send(db.projects);
+});
+
+app.get("/projects/:id", checkSession, function (req, res, next) {
+  var project = db.projects[req.params.id];
+  if (!project) return next();
+  res.send(project);
+});
+
+app.put("/projects/:id", checkSession, function (req, res, next) {
+  db.projects[req.params.id] = req.body;
+  console.log("DB", db);
+  res.send(true);
+});
+
+function checkSession(req, res, next) {
   if (!req.session.username) {
-    res.redirect("/login");
-    return;
+    res.code = 403;
+    res.end("Please login");
   }
-  res.render("task.ejs", {username:req.session.username});
-});
-
-//GET new_user function, new user page//
-app.get('/new_user', function(req, res) {
-  res.render("new_user.ejs");
-});
-
-//GET profile function, profile page//
-app.get('/profile', function(req, res) {
-  if (!req.session.username) {
-    res.redirect("/login");
-    return;
+  else {
+    next();
   }
-  res.render("profile.ejs", {username:req.session.username});
-});
+}
 
-
-
- app.use(express.static(__dirname + '/public'));
-
-var users= {
-  "username": "password",
-  "Laurainne": "lamp_post",
-  "Luna": "awesome"
+var db = {
+  users: {
+    creationix: "noderocks"
+  },
+  sessions: {},
+  projects: {
+    asd5f4a7sd4f: {
+      id: "asd5f4a7sd4f",
+      title: "My Project",
+      tasks: [
+        {title: "My title", description: "My description"},
+        {title: "Another title", description: "Another description"}
+      ]
+    }
+  }
 };
-
-var port = process.env.PORT || 8080;
-app.listen(port);
