@@ -156,12 +156,12 @@ Backbone.history.start();
 //   Backbone.history.navigate("login", true);
 // });
 
-$('#sortableTasks').sortable({
-  update: function(event, ui) {
-    var newOrder = $(this).sortable('toArray').toString();
-    $.get('saveSortable.php', {order:newOrder});
-  }
-});
+// $('#sortableTasks').sortable({
+//   update: function(event, ui) {
+//     var newOrder = $(this).sortable('toArray').toString();
+//     $.get('saveSortable.php', {order:newOrder});
+//   }
+// });
 
 // $(function() {
 //   // Setup drop down menu
