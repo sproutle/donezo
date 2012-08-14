@@ -11,6 +11,7 @@ footer {
 
 #main {
   padding: 30px;
+  font-size: 20px;
 }
 
 .hero-unit {
@@ -34,9 +35,12 @@ footer {
 #comments {
   margin-top: 50px;
   margin-bottom:50px;
+  display: fixed;
+  margin-left: 350px;
+  width: 1065px;
 }
 
-#sortableTasks li span {
+#accordian span {
   padding-right: 40px;
   padding-left: 5px;
 }

@@ -1,4 +1,3 @@
-// issue: when i load /projects works fine, load /project/project_id works fine, but when i go back to /projects, doesnt work, when I go to projects/project_id it doesnt work either. push refresh on either page while its not working, and it fixes itself...WHAT?
 // Load all the required libraries.
 require(["backbone", "dombuilder"], function (Backbone, domBuilder) {
 
@@ -11,7 +10,7 @@ var $topbar = $("#topbar");
 var $taskList = $("#taskList");
 var $comments = $("#comments");
 
-
+// makes the Login/Logout functions
 var Session = Backbone.Model.extend({
   initialize: function () {
     var session = this;
@@ -34,6 +33,7 @@ var Session = Backbone.Model.extend({
   }
 });
 
+// Gives the sessionview function that will load all the elements defined in that route, and add this login/logout functionality
 var SessionView = Backbone.View.extend({
   tagName: "ul",
   className: "nav pull-right",
@@ -45,6 +45,7 @@ var SessionView = Backbone.View.extend({
     var model = this.model;
     var elements = this.elements;
 
+    // uses the login/logout functions to make a nice dropdown menu to login with, then returns username if logged in
     this.el.textContent = "";
     this.el.appendChild(domBuilder([
       ["li$username", ["a$usernameLabel", {href: "#projects"}, this.model.get("username")]],
@@ -80,6 +81,7 @@ var SessionView = Backbone.View.extend({
     return this;
   },
 
+  // defines which elements are display block or none
   update: function () {
     var username = this.model.get("username");
     if (username) {
@@ -98,6 +100,7 @@ var SessionView = Backbone.View.extend({
   },
 });
 
+// defines session and session view
 var session = new Session({username:""});
 var sessionView = new SessionView({ model: session });
 $topbar.append(sessionView.render().el);
@@ -117,35 +120,81 @@ var Workspace = Backbone.Router.extend({
     $app.hide();
   },
 
+  // Draw the list of projects on the left, keep the right blank
   projects: function () {
     $home.hide();
     $app.show();
     $taskList.hide();
     $comments.hide();
-    $sidebar.html('<li class="nav-header">Projects</li><li><a href="#projects/123">My Project</a></li>')
-    // Draw the list of projects on the left, keep the right blank
-    // document.body.textContent = "Loading...";
+    $sidebar.html('<li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li>')
     // jQuery.get("/projects", function (projects) {
     //   document.body.textContent = JSON.stringify(projects);
     //   console.log(projects)
     // });
   },
 
+  // Same as projects, but also render all tasks for this project in the right
   project: function (projectId) {
     $home.hide();
     $app.show();
-    $sidebar.html('<li class="nav-header">Projects</li><li><a href="#projects/123">My Project</a></li>');
-    $main.html('<div class="hero-unit"><h1 id="projectName">Project1</h1><p>From the organization <span id="projectOrgId">Organization1</span><br>About the Project: <span id="projectInfo">Project is about yada yada yada.</span><br>Due: <span id="projectDue">so/me/date</span></div>');
-    $taskList.html('<h3>Tasks</h3><ul id="sortableTasks"><li><span id="taskIsDone"> NOT FINISHED </span><span id="taskName"> NAMED Task1 </span><span id="taskDue"> DUE so/me/date </span></li></ul>');
-    // Same as projects, but also render all tasks for this project in the right
+    $sidebar.empty();
+    $main.empty();
+    $taskList.empty();
+    $.get("/projects/" + projectId, function (data) {
+      console.log(data);
+      $sidebar.append(domBuilder([
+        ["li.nav-header", "Projects"],
+        ["li",
+          ["a", {href:"#projects/asd5f4a7sd4f"}, "My Project"]
+        ]
+      ]));
+      $main.append(domBuilder([
+        [".hero-unit",
+          ["h1#projectName", "Project1"], "From the orginization ",
+          ["span#projectOrgId", "Orginization1"],
+          ["br"], "About the Project: ",
+          ["span#projectInfo", "Project is yada yada yada"],
+          ["br"], "Due: ",
+          ["span#projectDue", "so/me/date"]
+        ]
+      ]));
+      $taskList.append(domBuilder([
+        ["h2", "Tasks"],
+        ["ul.accordion#accordion", {$: function (el) { $(el).sortable().disableSelection(); }},
+          ["li.accordion-group",
+            [".accordion-heading",
+              ["a.accordion-toggle",
+                {"data-toggle": "collapse", "data-parent": "#accordion", href: "#collapseOne"},
+                "Basic Task Info"
+              ]
+            ],
+            ["#collapseOne.accordion-body.collapse",
+              [".accordion-inner", "Detailed Description"]
+            ]
+          ],
+          ["li.accordion-group",
+            [".accordion-heading",
+              ["a.accordion-toggle",
+                {"data-toggle": "collapse", "data-parent": "#accordion", href: "#collapseTwo"},
+                "Basic Task Info2"
+              ]
+            ],
+            ["#collapseTwo.accordion-body.collapse",
+              [".accordion-inner", "Detailed Description2"]
+            ]
+          ]
+        ]
+      ]));
+    });
   },
 
+  // Same as project(projectId), but also expand and scroll to a particular task
   task: function (projectId, taskId) {
-    // Same as project(projectId), but also expand and scroll to a particular task
   }
 
 });
 
+// defines the workspace that will keep track of the history
 var workspace = new Workspace;
 Backbone.history.start();
 
@@ -157,98 +206,15 @@ Backbone.history.start();
 //   Backbone.history.navigate("login", true);
 // });
 
-// $('#sortableTasks').sortable({
-//   update: function(event, ui) {
-//     var newOrder = $(this).sortable('toArray').toString();
-//     $.get('saveSortable.php', {order:newOrder});
-//   }
-// });
-
-// $(function() {
-//   // Setup drop down menu
-//   // TODO: get dropdown plugin
-//   // $('.dropdown-toggle').dropdown();
-
 //   // Fix input element click problem
 //   $('.dropdown input, .dropdown label').click(function(e) {
 //     e.stopPropagation();
 //   });
 // });
 
-// var Project = Backbone.Model.extend({
-//   url: function () {
-//     return "/projects/" + this.id;
-//   }
-// });
-
-// var ProjectView = Backbone.View.extend({
-//   render: function () {
-//     this.el.textContent = "";
-//     this.el.appendChild(domBuilder([
-//       ["h1", this.model.get("title")],
-//       ["ul.tasks", this.model.get("tasks").map(function (task) {
-//         return ["li", task.title + " - " + task.description];
-//       })]
-//     ]));
-//   }
-// });
-
-
-  // login: function () {
-  //   document.body.textContent = "";
-  //   document.title = "Please Login";
-  //   document.body.appendChild(domBuilder([
-  //     ["h1", "Please Login"],
-  //     ["form", {onsubmit: onSubmit},
-  //       ["label", {"for":"username"}, "Username:"],
-  //       ["input$username", {type: "text", name: "username"}],
-  //       ["label", {"for":"password"}, "Password:"],
-  //       ["input$password", {type: "password", name: "password"}],
-  //       ["input", {type: "submit", value: "Login"}]
-  //     ]
-  //   ], $));
-  //   function onSubmit(evt) {
-  //     evt.preventDefault();
-  //     var data = {
-  //       username: $.username.value,
-  //       password: $.password.value,
-  //     }
-  //     jQuery.ajax("/login", {
-  //       type: "POST",
-  //       data: JSON.stringify(data),
-  //       contentType: "application/json; charset=utf-8",
-  //       dataType: "json",
-  //       success: function (session) {
-  //         if (session.username) {
-  //           username = session.username;
-  //           var target = "";
-  //           if (attempted) {
-  //             target = attempted;
-  //             attempted = undefined;
-  //           }
-  //           Backbone.history.navigate(target, true);
-  //         }
-  //         else {
-  //           alert("INVALID LOGIN");
-  //         }
-  //       }
-  //     });
-  //   }
-  // },
-
-  // project: function (id) {
-  //   document.title = "Loading Project...";
-
-  //   project = new Project({id:id});
-  //   view = new ProjectView({model: project});
-
-  //   document.body.textContent = "Loading Project...";
-
-  //   project.fetch().done(function (data) {
-  //     document.title = data.title;
-  //     view.render();
-  //     document.body.textContent = "";
-  //     document.body.appendChild(view.el);
-  //   });
-
-  // }
+//   project.fetch().done(function (data) {
+//     document.title = data.title;
+//     view.render();
+//     document.body.textContent = "";
+//     document.body.appendChild(view.el);
+//   });
