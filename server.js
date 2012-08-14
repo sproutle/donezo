@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express.createServer();
+var app = express();
 var nano = require('nano');
 var secrets = require('./secrets');
 
@@ -50,15 +50,6 @@ CouchStore.prototype.destroy = function (sid, callback) {
     callback();
   });
 };
-
-// CouchStore.prototype.length = function (callback) {
-//   callback(new Error("TODO: implement length"));
-// };
-
-// CouchStore.prototype.clear = function (callback) {
-//   callback(new Error("TODO: implement clear"));
-// };
-
 
 app.post("/login", function (req, res) {
   console.log(req.body, db.users[req.body.username]);

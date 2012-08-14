@@ -15,7 +15,14 @@ var Session = Backbone.Model.extend({
   initialize: function () {
     var session = this;
     this.onAuth = function (data) {
-      session.set({username: data.username})
+      session.set({username: data.username});
+      if (data.username && attempted) {
+        Backbone.history.navigate(attempted, true);
+        attempted = false;
+      }
+      if (!data.username && location.hash !== "") {
+        Backbone.history.navigate("", true);
+      }
     };
     $.get("/session", this.onAuth);
   },
@@ -53,7 +60,7 @@ var SessionView = Backbone.View.extend({
       ["li$signout", ["a.signout", {href: ""}, "Sign Out"]],
       ["li$signup", ["a", {href: "#/signup"}, "Sign Up"]],
       ["li.dropdown$dropdown",
-        ["a.dropdown-toggle", {href: "#", "data-toggle": "dropdown"}, "Sign In ", ["strong.caret"]],
+        ["a.dropdown-toggle$toggle", {href: "#", "data-toggle": "dropdown"}, "Sign In ", ["strong.caret"]],
         [".dropdown-menu", {css: {padding: "15px"}},
           ["form$form", {css: {margin: 0}},
             ["input", {type: "text", placeholder: "username", name: "username", size: 30}],
@@ -66,6 +73,12 @@ var SessionView = Backbone.View.extend({
       ]
     ], elements));
     this.update();
+
+    $('body').on('click.dropdown.data-api', '[data-toggle="dropdown"]', function (evt) {
+      if ($(this).parent().hasClass('open')) {
+        elements.form.username.focus();
+      }
+    });
 
     elements.form.addEventListener("submit", function (evt) {
       evt.preventDefault();
@@ -248,15 +261,6 @@ var Workspace = Backbone.Router.extend({
     $app.append(projectView.el);
     projectView.el.textContent = "Loading...";
     $app.show();
-
-    // $.get("/projects/" + projectId, function (data) {
-    //   console.log(data);
-    //   $sidebar.append(domBuilder([
-    //     ["li.nav-header", "Projects"],
-    //     ["li",
-    //       ["a", {href:"#projects/asd5f4a7sd4f"}, "My Project"]
-    //     ]
-    //   ]));
   },
 
   // Same as project(projectId), but also expand and scroll to a particular task
@@ -269,13 +273,13 @@ var Workspace = Backbone.Router.extend({
 var workspace = new Workspace;
 Backbone.history.start();
 
+var attempted;
+$(document).ajaxError(function(e, xhr, options){
+  attempted = location.hash;
+  Backbone.history.navigate("", true);
 });
 
-// var attempted;
-// $(document).ajaxError( function(e, xhr, options){
-//   attempted = location.hash;
-//   Backbone.history.navigate("login", true);
-// });
+});
 
 //   // Fix input element click problem
 //   $('.dropdown input, .dropdown label').click(function(e) {
