@@ -50,7 +50,7 @@ var SessionView = Backbone.View.extend({
     this.el.appendChild(domBuilder([
       ["li$username", ["a$usernameLabel", {href: "#projects"}, this.model.get("username")]],
       ["li.divider-vertical$divider"],
-      ["li$signout", ["a.signout", {href: "#"}, "Sign Out"]],
+      ["li$signout", ["a.signout", {href: ""}, "Sign Out"]],
       ["li$signup", ["a", {href: "#/signup"}, "Sign Up"]],
       ["li.dropdown$dropdown",
         ["a.dropdown-toggle", {href: "#", "data-toggle": "dropdown"}, "Sign In ", ["strong.caret"]],
@@ -100,10 +100,119 @@ var SessionView = Backbone.View.extend({
   },
 });
 
+var Project = Backbone.Model.extend({
+  initialize: function () {
+    this.tasks = new TaskList;
+    this.tasks.cid = this.cid;
+    this.on("change", function () {
+      this.tasks.reset(this.get("tasks"));
+    }, this);
+  },
+  url: function () {
+    return "/projects/" + this.get("id");
+  }
+});
+
+var Projects = Backbone.Collection.extend({
+  model: Project,
+  url: "/projects"
+});
+
+var Task = Backbone.Model.extend({});
+
+var TaskList = Backbone.Collection.extend({ model: Task });
+
+var TaskView = Backbone.View.extend({
+  tagName: "li",
+  className: "accordion-group",
+  initialize: function () {
+    this.model.on("change", this.render, this);
+  },
+  render: function () {
+    this.el.textContent = "";
+    this.el.appendChild(domBuilder([
+      [".accordion-heading",
+        ["a.accordion-toggle", {
+          "data-toggle": "collapse",
+          "data-parent": "#tasks-" + this.model.collection.cid,
+          href: "#task-" + this.model.cid
+        }, this.model.get("title")]
+      ],
+      [".accordion-body.collapse", {id: "task-" + this.model.cid},
+        [".accordion-inner", this.model.get("description")]
+      ]
+    ]));
+    return this;
+  }
+});
+
+var TaskListView = Backbone.View.extend({
+  tagName: "ul",
+  className: "accordion",
+  initialize: function () {
+    this.el.setAttribute("id", "tasks-" + this.model.cid);
+    this.model.on("reset", this.render, this);
+  },
+  render: function () {
+    this.el.textContent = "";
+    this.el.appendChild(domBuilder([
+      this.model.models.map(function (task) {
+        var taskView = new TaskView({model: task});
+        return taskView.render().el;
+      })
+    ]));
+    $(this.el).sortable().disableSelection();
+    return this;
+  }
+});
+
+var ProjectView = Backbone.View.extend({
+  className: "span9",
+  initialize: function () {
+    this.model.on("change", this.render, this);
+    this.tasks = new TaskListView({model:this.model.tasks});
+  },
+  render: function () {
+    this.el.textContent = "";
+    console.log(this.model);
+    this.el.appendChild(domBuilder([
+      [".hero-unit",
+        ["h1", this.model.get("title")],
+        ["p", "From the orginization: Orginization1"],
+        ["p", "About the Project: " + this.model.get("description")],
+        ["p", "Due: ", formatDate(this.model.get("dueDate"))]
+      ],
+      [".hero-unit", {css:{margin:"20px 0"}}, this.tasks.render().el],
+      [".hero-unit", "Loading comments..."]
+    ]));
+    return this;
+  }
+});
+
 // defines session and session view
 var session = new Session({username:""});
 var sessionView = new SessionView({ model: session });
 $topbar.append(sessionView.render().el);
+
+var months = [
+  "January",
+  "Februrary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+function formatDate(string) {
+  var date = new Date(string);
+  return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+}
 
 // Define the routes
 var Workspace = Backbone.Router.extend({
@@ -124,68 +233,30 @@ var Workspace = Backbone.Router.extend({
   projects: function () {
     $home.hide();
     $app.show();
-    $taskList.hide();
-    $comments.hide();
-    $sidebar.html('<li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li>')
-    // jQuery.get("/projects", function (projects) {
-    //   document.body.textContent = JSON.stringify(projects);
-    //   console.log(projects)
-    // });
+    $app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li></ul></div></div>');
   },
 
   // Same as projects, but also render all tasks for this project in the right
   project: function (projectId) {
+    var project = new Project({id: projectId});
+    project.fetch();
+
+    projectView = new ProjectView({model: project});
+
     $home.hide();
+    $app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li></ul></div></div>');
+    $app.append(projectView.el);
+    projectView.el.textContent = "Loading...";
     $app.show();
-    $sidebar.empty();
-    $main.empty();
-    $taskList.empty();
-    $.get("/projects/" + projectId, function (data) {
-      console.log(data);
-      $sidebar.append(domBuilder([
-        ["li.nav-header", "Projects"],
-        ["li",
-          ["a", {href:"#projects/asd5f4a7sd4f"}, "My Project"]
-        ]
-      ]));
-      $main.append(domBuilder([
-        [".hero-unit",
-          ["h1#projectName", "Project1"], "From the orginization ",
-          ["span#projectOrgId", "Orginization1"],
-          ["br"], "About the Project: ",
-          ["span#projectInfo", "Project is yada yada yada"],
-          ["br"], "Due: ",
-          ["span#projectDue", "so/me/date"]
-        ]
-      ]));
-      $taskList.append(domBuilder([
-        ["h2", "Tasks"],
-        ["ul.accordion#accordion", {$: function (el) { $(el).sortable().disableSelection(); }},
-          ["li.accordion-group",
-            [".accordion-heading",
-              ["a.accordion-toggle",
-                {"data-toggle": "collapse", "data-parent": "#accordion", href: "#collapseOne"},
-                "Basic Task Info"
-              ]
-            ],
-            ["#collapseOne.accordion-body.collapse",
-              [".accordion-inner", "Detailed Description"]
-            ]
-          ],
-          ["li.accordion-group",
-            [".accordion-heading",
-              ["a.accordion-toggle",
-                {"data-toggle": "collapse", "data-parent": "#accordion", href: "#collapseTwo"},
-                "Basic Task Info2"
-              ]
-            ],
-            ["#collapseTwo.accordion-body.collapse",
-              [".accordion-inner", "Detailed Description2"]
-            ]
-          ]
-        ]
-      ]));
-    });
+
+    // $.get("/projects/" + projectId, function (data) {
+    //   console.log(data);
+    //   $sidebar.append(domBuilder([
+    //     ["li.nav-header", "Projects"],
+    //     ["li",
+    //       ["a", {href:"#projects/asd5f4a7sd4f"}, "My Project"]
+    //     ]
+    //   ]));
   },
 
   // Same as project(projectId), but also expand and scroll to a particular task

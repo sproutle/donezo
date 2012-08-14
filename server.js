@@ -85,7 +85,9 @@ app.post("/logout", function (req, res, next) {
 });
 
 app.get("/projects", checkSession, function (req, res) {
-  res.send(db.projects);
+  res.send(Object.keys(db.projects).map(function (id) {
+    return db.projects[id];
+  }));
 });
 
 app.get("/projects/:id", checkSession, function (req, res, next) {
@@ -119,6 +121,8 @@ var db = {
     asd5f4a7sd4f: {
       id: "asd5f4a7sd4f",
       title: "My Project",
+      description: "My project's awesome description",
+      dueDate: "2012/09/11",
       tasks: [
         {title: "My title", description: "My description"},
         {title: "Another title", description: "Another description"}
