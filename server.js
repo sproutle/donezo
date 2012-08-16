@@ -1,18 +1,21 @@
+// use these files
 var express = require('express');
 var app = express();
 var nano = require('nano');
 var secrets = require('./secrets');
 
+// express uses
 app.use(express.logger());
 app.use(express.cookieParser());
 app.use(express.session({secret: "他们的专业知识与" }));
 app.use(express.bodyParser());
 app.use(express.static(__dirname + "/public"));
 
+// its listening
 app.listen(8000);
-
 console.log("http://localhost:8000/");
 
+// uses the database form cloudant
 var db = nano("https://" + secrets.username + ":" + secrets.password + "@sproutle.cloudant.com/donezo-demo");
 db.list(function (err, body) {
   if (err) throw err;
@@ -20,6 +23,7 @@ db.list(function (err, body) {
   });
 });
 
+// couch prototypes
 CouchStore.prototype.__proto__ = express.session.Store.prototype;
 function CouchStore(db) {
   this.db = db;
@@ -51,6 +55,15 @@ CouchStore.prototype.destroy = function (sid, callback) {
   });
 };
 
+app.post("/register", function (req, res) {
+  if (!db.users[req.body.username]) {
+    db.users[req.body.username] = req.body.password;
+    req.session.username = req.body.username;
+  }
+  res.send(req.session);
+});
+
+// routes
 app.post("/login", function (req, res) {
   console.log(req.body, db.users[req.body.username]);
   if (db.users[req.body.username] === req.body.password) {
@@ -93,6 +106,8 @@ app.put("/projects/:id", checkSession, function (req, res, next) {
   res.send(true);
 });
 
+
+// session check
 function checkSession(req, res, next) {
   if (!req.session.username) {
     res.code = 403;
@@ -103,6 +118,7 @@ function checkSession(req, res, next) {
   }
 }
 
+// database
 var db = {
   users: {
     creationix: "noderocks"
@@ -117,6 +133,10 @@ var db = {
       tasks: [
         {title: "My title", description: "My description"},
         {title: "Another title", description: "Another description"}
+      ],
+      comments: [
+        {user: "creationix", content: "this project is awesome!", date: "2012/8/15"},
+        {user: "creationix", content: "this project is more awesome!", date: "2012/8/16"}
       ]
     }
   }
