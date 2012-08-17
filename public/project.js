@@ -38,9 +38,22 @@ define("project", ["backbone", "dombuilder", "task", "utils"], function (Backbon
           ["h3", "Comments"],
           ["br"],
           // ["ul",
-          //   ["li", this.comments.user, [br], this.comments.content, [br], this.comments.date]
+          //   ["li",
+          //   this.comments.user,
+          //     ["br"],
+          //   this.comments.content,
+          //     ["br"],
+          //   this.comments.date]
           // ],
-          ["br"],
+          // ["br"],
+          ["form",
+            ["input",
+              {type: "text",
+              name: "comment",
+              placeholder: "Comment Here",
+              size: 30}
+            ]
+          ],
           ["button.btn", "Add Comment"]
         ]
       ]));

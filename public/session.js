@@ -116,7 +116,7 @@ define("session", ["backbone","dombuilder"], function (Backbone, domBuilder) {
               ],
               ["input.btn.btn-primary",
                 {type: "submit", value: "Create Account"}
-              ],
+              ]
             ]
           ]
         ],

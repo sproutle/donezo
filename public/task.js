@@ -43,6 +43,22 @@ define("task", ["backbone", "dombuilder"], function (Backbone, domBuilder) {
           return taskView.render().el;
         }),
         ["br"],
+        ["br"],
+        ["form",
+          ["input",
+            {type: "text",
+            name: "title",
+            placeholder: "Title",
+            size: 30}
+          ],
+          ["br"],
+          ["input",
+            {type: "text",
+            name: "description",
+            placeholder: "Description",
+            size: 30}
+          ]
+        ],
         ["button.btn", "Add Task"]
       ]));
       $(this.el).sortable().disableSelection();
