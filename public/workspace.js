@@ -100,9 +100,14 @@ define("workspace", ["backbone", /*"domBuilder",*/ "project"], function (Backbon
       //     ]
       //   ]
       // ]));
-      // return this;
-      this.$app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li><br><br><li><button class="btn" data-toggle="modal" href="#myModal">Create Project</button></li></ul></div></div><div class="modal hide" id="myModal"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Create Project</h3></div><div class="modal-body"><input type="text" name="title" placeholder="Title" size=30 /><br><form><input type="text" name="orginization" placeholder="Orginization Associated With" size=30 /><br><input type="text" name="description" placeholder="Description" size=30 /><br><input type="text" name="due" placeholder="Due Date" size=30 /></form></div><div class="modal-footer"><a href="#projects" class="btn btn-primary">Create</a></div></div><div class="span9"><div class="hero-unit"><p>Click on a project or create a new project to get started!</p></div></div>');
+      this.$app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li><br><br><li><button class="btn" data-toggle="modal" href="#myModal">Create Project</button></li></ul></div></div><div class="modal hide fade" id="myModal"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Create Project</h3></div><div class="modal-body"><input type="text" name="title" placeholder="Title" size=30 /><br><form><input type="text" name="orginization" placeholder="Orginization Associated With" size=30 /><br><input type="text" name="description" placeholder="Description" size=30 /><br><input type="text" name="due" placeholder="Due Date" size=30 /></form></div><div class="modal-footer"><a href="#projects" class="btn btn-primary">Create</a></div></div><div class="span9"><div class="hero-unit"><p>Click on a project or create a new project to get started!</p></div></div>');
     },
+    // $('body').on('click.modal.data-api', '[data-toggle="modal"]', function (evt) {
+    //   var $parent = $(this).parent();
+    //   if ($parent.hasClass('open')) {
+    //     $parent.find("form")[0].title.focus();
+    //   }
+    // });
 
     // Same as projects, but also render all tasks for this project in the right
     project: function (projectId) {
@@ -112,7 +117,7 @@ define("workspace", ["backbone", /*"domBuilder",*/ "project"], function (Backbon
       projectView = new Project.ProjectView({model: project});
 
       this.$home.hide();
-      this.$app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li><br><br><li><button class="btn" data-toggle="modal" href="#myModal">Create Project</button></li></ul></div></div><div class="modal hide" id="myModal"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Create Project</h3></div><div class="modal-body"><input type="text" name="title" placeholder="Title" size=30 /><br><form><input type="text" name="orginization" placeholder="Orginization Associated With" size=30 /><br><input type="text" name="description" placeholder="Description" size=30 /><br><input type="text" name="due" placeholder="Due Date" size=30 /></form></div><div class="modal-footer"><a href="#projects" class="btn btn-primary">Create</a></div></div>');
+      this.$app.html('<div class="span3"><div class="well sidebar-nav"><ul class="nav nav-list"><li class="nav-header">Projects</li><li><a href="#projects/asd5f4a7sd4f">My Project</a></li><br><br><li><button class="btn" data-toggle="modal" href="#myModal">Create Project</button></li></ul></div></div><div class="modal hide fade" id="myModal"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h3>Create Project</h3></div><div class="modal-body"><input type="text" name="title" placeholder="Title" size=30 /><br><form><input type="text" name="orginization" placeholder="Orginization Associated With" size=30 /><br><input type="text" name="description" placeholder="Description" size=30 /><br><input type="text" name="due" placeholder="Due Date" size=30 /></form></div><div class="modal-footer"><a href="#projects/asd5f4a7sd4f" class="btn btn-primary">Create</a></div></div>');
       this.$app.append(projectView.el);
       projectView.el.textContent = "Loading...";
       this.$app.show();

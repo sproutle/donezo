@@ -8,3 +8,7 @@ footer {
   text-align: center;
   margin-top: 50px;
 }
+
+#myModal {
+  width: 300px;
+}
